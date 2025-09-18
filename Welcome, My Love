@@ -1,0 +1,15 @@
+<audio autoplay loop id="loveSong">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<!-- Optional: Play/Pause Button -->
+<button onclick="togglePlay()">❤️ Pause/Play Song ❤️</button>
+
+<script>
+  function togglePlay() {
+    let song = document.getElementById("loveSong");
+    if (song.paused) song.play();
+    else song.pause();
+  }
+</script>
