@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dudu & Bubu Love Catcher</title>
+  <style>
+    body { background: #ffe6f2; text-align: center; overflow: hidden; }
+    #gameArea { 
+      width: 100%; height: 400px; 
+      position: relative; background: #ffdbea; 
+      border: 5px dashed #ff6b9d; margin: 20px auto; 
+      border-radius: 20px; 
+    }
+    .heart { 
+      position: absolute; color: red; font-size: 30px; 
+      animation: fall 5s linear forwards; 
+    }
+    #dudu, #bubu {
+      position: absolute; bottom: 20px; font-size: 50px; 
+      cursor: pointer; user-select: none;
+    }
+    #dudu { left: 20%; }
+    #bubu { right: 20%; }
+    #score { font-size: 24px; color: #d6307b; font-weight: bold; }
+    @keyframes fall { to { top: 400px; opacity: 0; } }
+  </style>
+</head>
+<body>
+  <h1>💖 Help Dudu & Bubu Catch Falling Hearts! 💖</h1>
+  <div id="score">Hearts Caught: 0</div>
+  <div id="gameArea">
+    <div id="dudu">🧸</div>
+    <div id="bubu">🧸</div>
+  </div>
+
+  <a href="page3.html"><button style="margin-top: 20px; padding: 10px 20px; font-size: 18px;">💌 Go to Love Letter 💌</button></a>
+
+  <script>
+    let score = 0;
+    const dudu = document.getElementById('dudu');
+    const bubu = document.getElementById('bubu');
+    const gameArea = document.getElementById('gameArea');
+    const scoreDisplay = document.getElementById('score');
+
+    // Move Dudu & Bubu with mouse
+    gameArea.addEventListener('mousemove', (e) => {
+      let rect = gameArea.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+      dudu.style.left = (x - 50) + 'px';
+      bubu.style.left = (x - 50) + 'px';
+    });
+
+    // Create falling hearts
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 90 + '%';
+      gameArea.appendChild(heart);
+
+      // Check collision
+      setTimeout(() => {
+        const heartRect = heart.getBoundingClientRect();
+        const duduRect = dudu.getBoundingClientRect();
+
+        if (
+          heartRect.bottom >= duduRect.top &&
+          heartRect.left >= duduRect.left - 20 &&
+          heartRect.right <= duduRect.right + 20
+        ) {
+          score++;
+          scoreDisplay.innerText = `Hearts Caught: ${score}`;
+          heart.remove();
+        } else if (heartRect.top > window.innerHeight) {
+          heart.remove();
+        }
+      }, 5000);
+
+      // Remove heart after animation
+      setTimeout(() => { if (heart) heart.remove(); }, 5100);
+    }
+
+    // Spawn hearts every 1.5 seconds
+    setInterval(createHeart, 1500);
+  </script>
+</body>
+</html>
