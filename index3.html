@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #ffafbd, #ffc3a0);
+      overflow: hidden;
+      font-family: 'Brush Script MT', cursive;
+      color: #fff;
+      text-align: center;
+    }
+    #letter {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 30px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      font-size: 22px;
+      line-height: 1.8;
+      transform: scale(0.8);
+      animation: popIn 2s forwards, float 3s ease-in-out infinite alternate;
+    }
+    @keyframes popIn {
+      to { transform: scale(1); }
+    }
+    @keyframes float {
+      to { transform: scale(1) translateY(-10px); }
+    }
+    .floating-heart {
+      position: absolute;
+      font-size: 30px;
+      opacity: 0;
+      animation: rise 8s linear infinite;
+    }
+    @keyframes rise {
+      0% { bottom: -50px; opacity: 0; }
+      10% { opacity: 1; }
+      100% { bottom: 110vh; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="letter">
+    My Bubuu Love,<br><br>
+    
+    From the moment I met you, my world painted itself in colors I never knew existed.<br><br>
+    
+    You are my calm in the chaos, my laughter in the silence, my home wherever we are.<br><br>
+    
+    I promise to be your Dudu on gloomy days and your Bubu on adventurous nights.<br><br>
+    
+    I love you more than yesterday, less than tomorrow.<br><br>
+    
+    Forever yours,<br>
+    [Bubuu Darlinggg] 💘
+  </div>
+
+  <script>
+    // Create floating hearts in background
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 8000);
+    }
+
+    setInterval(createFloatingHeart, 500);
+  </script>
+
+  <a href="index.html">
+    <button style="
+      margin-top: 40px; padding: 12px 30px; font-size: 18px;
+      background: #ff6b9d; color: white; border: none; border-radius: 30px;
+      cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    ">🏡 Return Home 🏡</button>
+  </a>
+</body>
+</html>
