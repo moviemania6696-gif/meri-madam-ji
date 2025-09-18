@@ -1,0 +1,32 @@
+<div id="loveLines" style="font-family: 'Cursive'; font-size: 24px; text-align: center; margin-top: 50px; color: #ff6b9d;"></div>
+
+<script>
+  const lines = [
+    "You are my sunshine on cloudy days ☁️☀️",
+    "Every heartbeat whispers your name 💓",
+    "I fall for you more with every blink 👀💘",
+    "Dudu says you’re the cutest. Bubu agrees. 🐻💕",
+    "Forever isn’t long enough with you ⏳💞"
+  ];
+
+  let lineIndex = 0;
+  let charIndex = 0;
+  const speed = 100;
+
+  function typeWriter() {
+    if (charIndex < lines[lineIndex].length) {
+      document.getElementById("loveLines").innerHTML += lines[lineIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeWriter, speed);
+    } else {
+      setTimeout(() => {
+        document.getElementById("loveLines").innerHTML = "";
+        charIndex = 0;
+        lineIndex = (lineIndex + 1) % lines.length;
+        typeWriter();
+      }, 2000);
+    }
+  }
+
+  window.onload = typeWriter;
+</script>
